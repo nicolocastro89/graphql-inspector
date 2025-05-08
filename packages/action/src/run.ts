@@ -41,6 +41,8 @@ export async function run() {
   const approveLabel: string = core.getInput('approve-label') || 'approved-breaking-change';
   const rulesList = getInputAsArray('rules') || [];
   const onUsage = core.getInput('onUsage');
+  const successMessage: string = core.getInput('success-title')
+  const failureMessage: string = core.getInput('failure-title')
 
   const octokit = github.getOctokit(token);
 
@@ -213,8 +215,8 @@ export async function run() {
 
   const title =
     conclusion === CheckConclusion.Failure
-      ? 'Something is wrong with your schema'
-      : 'Everything looks good';
+      ? failureMessage
+      : successMessage;
 
   core.info(`Conclusion: ${conclusion}`);
 
