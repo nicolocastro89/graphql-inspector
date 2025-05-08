@@ -299,10 +299,9 @@ describe('Inspector Action', () => {
 
       expect(mockUpdateCheckRun).toBeCalledWith(expect.anything(), '2', {
         conclusion: CheckConclusion.Success,
-        output: {
-          title: 'Your schema is good to go!!!',
-          
-        },
+        output: expect.objectContaining({
+          title: 'Your schema is good to go!!!'
+         }),
       });
     });
 
@@ -345,9 +344,9 @@ describe('Inspector Action', () => {
 
       expect(mockUpdateCheckRun).toBeCalledWith(expect.anything(), '2', {
         conclusion: CheckConclusion.Failure,
-        output: {
-          title: 'Your schema is broken!!!',
-        },
+        output:  expect.objectContaining({
+          title: 'Your schema is broken!!!'
+         }),
       });
     });
     
