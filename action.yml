@@ -40,6 +40,16 @@ inputs:
       Helps to get the correct state of schema when Pull Request is behind the target branch
 
       (enabled by default)
+  success-title:
+    default: 'Everything looks good'
+    required: false
+    description: |
+      Title to display when the action is successful. If not provided, the default 'Everything looks good' will be used.
+  failure-title:
+    default: 'Something is wrong with your schema'
+    required: false
+    description: |
+      Title to display when the action failes. If not provided, the default 'Something is wrong with your schema' will be used.
   rules:
     description: |
       Apply rules that change certain checks from Breaking to Dangerous.
