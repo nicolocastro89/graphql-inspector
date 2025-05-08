@@ -41,8 +41,8 @@ export async function run() {
   const approveLabel: string = core.getInput('approve-label') || 'approved-breaking-change';
   const rulesList = getInputAsArray('rules') || [];
   const onUsage = core.getInput('onUsage');
-  const successMessage: string = core.getInput('success-title')
-  const failureMessage: string = core.getInput('failure-title')
+  const successMessage: string = core.getInput('success-title') || 'Everything looks good';
+  const failureMessage: string = core.getInput('failure-title') || 'Something is wrong with your schema';
 
   const octokit = github.getOctokit(token);
 
@@ -213,10 +213,12 @@ export async function run() {
 
   const summary = createSummary(changes, 100, false);
 
+  // const successMessage: string = 'Everything looks good';
+  // const failureMessage: string = 'Something is wrong with your schema';
   const title =
     conclusion === CheckConclusion.Failure
-      ? failureMessage
-      : successMessage;
+    ? failureMessage
+    : successMessage;
 
   core.info(`Conclusion: ${conclusion}`);
 
